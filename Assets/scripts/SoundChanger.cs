@@ -40,7 +40,7 @@ public class SoundChanger : MonoBehaviour
         StartCoroutine(ChangeVolume(_minVolumeValue));
     }
 
-    public IEnumerator ChangeVolume(float goal)
+    private IEnumerator ChangeVolume(float goal)
     {
         while (_audioSource.volume != goal)
         {
