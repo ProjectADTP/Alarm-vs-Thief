@@ -1,19 +1,15 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ThiefMovement : MonoBehaviour
 {
     [SerializeField] private float _speed;
-    [SerializeField] private Path _path;
+    [SerializeField] private Transform[] _points;
 
     private int _currentPoint = 0;
-    private Transform[] _points;
 
     private void Start()
     {
-        _points = _path.GetPoints();
-
         StartCoroutine(MoveToPoints());
     }
 

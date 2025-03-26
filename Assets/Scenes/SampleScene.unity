@@ -3996,7 +3996,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 726389473}
-  - component: {fileID: 726389474}
   m_Layer: 0
   m_Name: Path
   m_TagString: Untagged
@@ -4029,29 +4028,6 @@ Transform:
   - {fileID: 1948795636}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &726389474
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 726389472}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80d3afb8a1ff67a41bb090e4dbd6c7df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _points:
-  - {fileID: 272304292}
-  - {fileID: 1657524523}
-  - {fileID: 1766969821}
-  - {fileID: 1600690139}
-  - {fileID: 92209048}
-  - {fileID: 871832769}
-  - {fileID: 193655439}
-  - {fileID: 1180572218}
-  - {fileID: 241861847}
-  - {fileID: 1948795636}
 --- !u!1 &785159490
 GameObject:
   m_ObjectHideFlags: 0
@@ -4579,7 +4555,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 2
-  _path: {fileID: 726389474}
+  _points:
+  - {fileID: 272304292}
+  - {fileID: 1657524523}
+  - {fileID: 1766969821}
+  - {fileID: 1600690139}
+  - {fileID: 92209048}
+  - {fileID: 871832769}
+  - {fileID: 193655439}
+  - {fileID: 1180572218}
+  - {fileID: 241861847}
+  - {fileID: 1948795636}
 --- !u!1001 &1624287379
 PrefabInstance:
   m_ObjectHideFlags: 0

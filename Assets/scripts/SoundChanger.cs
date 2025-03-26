@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System;
 
 public class SoundChanger : MonoBehaviour
 {
@@ -8,23 +7,30 @@ public class SoundChanger : MonoBehaviour
     [SerializeField] private AudioSource _audioSource;
     [SerializeField] private ClosedArea _closedArea;
 
-    private float _SoundChangeValue = 0.1f;
+    private float _SoundChangeValue = 0.5f;
     private float _minVolumeValue = 0f;
     private float _maxVolumeValue = 1f;
 
-    private WaitForSeconds _delay;
+    private float _targetVolume;
 
-    private float _second = 1f;
-    private float _timeDivider = 10f;
+    private Coroutine _volumeCoroutine;
+    private WaitForSeconds _delay = new WaitForSeconds(1 / 10);
 
-    private void Start()
+    private void Awake()
     {
-        _delay = new WaitForSeconds(_second / _timeDivider);
-
         _audioSource.clip = _clip;
+    }
 
+    private void OnEnable()
+    {
         _closedArea.Entered += Increase;
         _closedArea.Exited += Decrease;
+    }
+
+    private void OnDisable()
+    {
+        _closedArea.Entered -= Increase;
+        _closedArea.Exited -= Decrease;
     }
 
     private void Increase(ClosedArea area)
@@ -32,27 +38,32 @@ public class SoundChanger : MonoBehaviour
         _audioSource.Play();
         _audioSource.volume = _minVolumeValue;
 
-        StartCoroutine(ChangeVolume(_maxVolumeValue));
+        _targetVolume = _maxVolumeValue;
+
+        if (_volumeCoroutine == null)
+            _volumeCoroutine = StartCoroutine(ChangeVolume());
     }
 
     private void Decrease(ClosedArea area)
     {
-        StartCoroutine(ChangeVolume(_minVolumeValue));
+        _targetVolume = _minVolumeValue;
+
+        if (_volumeCoroutine == null)
+            _volumeCoroutine = StartCoroutine(ChangeVolume());
     }
 
-    public IEnumerator ChangeVolume(float goal)
+    private IEnumerator ChangeVolume()
     {
-        while (_audioSource.volume != goal)
+        while (_audioSource.volume != _targetVolume)
         {
             yield return _delay;
 
-            if (goal == _maxVolumeValue)
-                _audioSource.volume += _SoundChangeValue;
-            else
-                _audioSource.volume -= _SoundChangeValue;
+            _audioSource.volume = Mathf.MoveTowards(_audioSource.volume, _targetVolume, _SoundChangeValue * Time.deltaTime);
         }
 
-        if ((_audioSource.volume == _minVolumeValue) && (goal == _minVolumeValue))
+        if ((_audioSource.volume == _minVolumeValue) && (_targetVolume == _minVolumeValue))
             _audioSource.Stop();
+
+        _volumeCoroutine = null; 
     }
 }
