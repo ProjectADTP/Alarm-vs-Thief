@@ -8,7 +8,7 @@ public class ClosedArea : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.TryGetComponent<ThiefMovement>(out ThiefMovement component) == false)
+        if (other.TryGetComponent<Mover>(out Mover component) == false)
             return;
 
         Entered?.Invoke(this);
@@ -16,7 +16,7 @@ public class ClosedArea : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.TryGetComponent<ThiefMovement>(out ThiefMovement component) == false)
+        if (other.TryGetComponent<Mover>(out Mover component) == false)
             return;
 
         Exited?.Invoke(this);

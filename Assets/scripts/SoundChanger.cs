@@ -36,23 +36,22 @@ public class SoundChanger : MonoBehaviour
     private void Increase(ClosedArea area)
     {
         _audioSource.Play();
-        _audioSource.volume = _minVolumeValue;
 
-        _targetVolume = _maxVolumeValue;
+        if (_volumeCoroutine != null)
+            StopCoroutine(_volumeCoroutine);
 
-        if (_volumeCoroutine == null)
-            _volumeCoroutine = StartCoroutine(ChangeVolume());
+        _volumeCoroutine = StartCoroutine(ChangeVolume(_maxVolumeValue));
     }
 
     private void Decrease(ClosedArea area)
     {
-        _targetVolume = _minVolumeValue;
+        if (_volumeCoroutine != null)
+            StopCoroutine(_volumeCoroutine);
 
-        if (_volumeCoroutine == null)
-            _volumeCoroutine = StartCoroutine(ChangeVolume());
+        _volumeCoroutine = StartCoroutine(ChangeVolume(_minVolumeValue));
     }
 
-    private IEnumerator ChangeVolume()
+    private IEnumerator ChangeVolume(float _targetVolume)
     {
         while (_audioSource.volume != _targetVolume)
         {

@@ -3600,7 +3600,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -4534,7 +4534,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5628018141983903104, guid: ef67ba864d1ecc042b5f4cf48455c0a6,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1619884903}
+      addedObject: {fileID: 1619884909}
   m_SourcePrefab: {fileID: 100100000, guid: ef67ba864d1ecc042b5f4cf48455c0a6, type: 3}
 --- !u!1 &1619884902 stripped
 GameObject:
@@ -4542,7 +4542,7 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1619884901}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1619884903
+--- !u!114 &1619884909
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

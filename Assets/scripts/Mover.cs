@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class ThiefMovement : MonoBehaviour
+public class Mover : MonoBehaviour
 {
     [SerializeField] private float _speed;
     [SerializeField] private Transform[] _points;
@@ -21,7 +21,7 @@ public class ThiefMovement : MonoBehaviour
         {
             if (transform.position.IsEnoughClose(_points[_currentPoint].transform.position, distanceToTarget))
             {
-                _currentPoint = (_currentPoint + 1) % _points.Length;
+                _currentPoint = ++_currentPoint % _points.Length;
             }
 
             transform.position = Vector3.MoveTowards(transform.position, _points[_currentPoint].transform.position, _speed * Time.deltaTime);
